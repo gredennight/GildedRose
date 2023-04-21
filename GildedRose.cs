@@ -9,13 +9,22 @@ namespace csharp
         {
             this.Items = Items;
         }
+        public string ShowItems()
+        {
+            string output = "SellIn\tQuality\tName\n";
 
+            foreach (Item item in Items)
+            {
+                output += item.SellIn + "\t" + item.Quality + "\t" + item.Name + "\n";
+            }
+            return output;
+        }
         public void UpdateQuality()
         {
             for (var i = 0; i < Items.Count; i++)
             {
                 if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                {
+                {//якщо це товар який не покращує свою якість з часом
                     if (Items[i].Quality > 0)
                     {
                         if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
@@ -25,7 +34,7 @@ namespace csharp
                     }
                 }
                 else
-                {
+                {//якщо він покращує свою якість
                     if (Items[i].Quality < 50)
                     {
                         Items[i].Quality = Items[i].Quality + 1;
